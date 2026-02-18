@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel-api/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-api/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-api/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lab-laravel-installer/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/lab-laravel-installer/tests/Unit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/composer" />

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Load .env if exists (with auto-export)
 if [ -f .env ]; then
   set -a
   source .env
@@ -9,5 +8,12 @@ fi
 
 export WWWGROUP="${WWWGROUP:-$(id -g)}"
 export WWWUSER="${WWWUSER:-$(id -u)}"
+
+if [ "$1" = "artisan" ]; then
+  shift
+  docker compose -f docker-compose.yml -f docker.override.yml \
+    exec --user $(id -u):$(id -g) laravel-api php artisan "$@"
+  exit
+fi
 
 docker compose -f docker-compose.yml -f docker.override.yml "$@"

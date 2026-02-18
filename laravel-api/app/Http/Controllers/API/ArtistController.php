@@ -7,6 +7,7 @@ use App\Http\Resources\ArtistResource;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class ArtistController extends Controller
 {
@@ -48,6 +49,7 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
+        Gate::authorize('view', $artist);
         return new ArtistResource($artist);
     }
 
@@ -56,6 +58,7 @@ class ArtistController extends Controller
      */
     public function update(Request $request, Artist $artist)
     {
+        Gate::authorize('update', $artist);
         $request->validate([
             'name' => [
                 'required',
@@ -90,6 +93,7 @@ class ArtistController extends Controller
      */
     public function destroy(Artist $artist)
     {
+        Gate::authorize('delete', $artist);
         $artist->delete();
         return response()->json(null, 204);
     }
