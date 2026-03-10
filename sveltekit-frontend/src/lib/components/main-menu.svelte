@@ -5,6 +5,7 @@
 import { globalCounter } from '$lib/stores/counter.svelte.ts';
 import { theme } from '$lib/stores/theme.svelte.ts';  
 import ThemeToggle from '$lib/components/theme-toggle.svelte'
+import LogoutButton from '$lib/components/logout-button.svelte';
   const { brand } = $props()
 
   onMount(() => {
@@ -44,6 +45,8 @@ import ThemeToggle from '$lib/components/theme-toggle.svelte'
 			localStorage.setItem('theme', 'white');
 		}
 	});
+
+	let user = $derived($page.data.user);
 </script>
 
 <nav class="sticky top-0 bg-blue-600 text-white dark:bg-gray-800">
@@ -86,6 +89,19 @@ import ThemeToggle from '$lib/components/theme-toggle.svelte'
 					<div>
 			<ThemeToggle></ThemeToggle>
 		</div>
+		            <div class="flex items-center gap-4">
+                        {#if user}
+                                    <div>{user.name}</div>
+                                    <LogoutButton></LogoutButton>
+                            {:else}
+                                    <a
+                                        href="/login"
+                                        class="hidden text-sm font-semibold text-slate-500 hover:text-slate-900 md:block"
+                                    >
+                                            Log in
+                                    </a>
+                            {/if}
+                    </div>
 		</div>
 	</div>
 </nav>

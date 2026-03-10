@@ -1,9 +1,15 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import apiClient from '$lib/server/api-client';
+import apiClient, { withAuth } from '$lib/server/api-client.server';
 
 export const actions: Actions = {
-	default: async ({ request }) => {
+	default: async ({ request, cookies }) => {
+		const token = cookies.get('token'); // ดึงค่า token จาก cookies
+
+		if (!token) {
+			throw redirect(303, '/login');
+		}
+
 		const formData = await request.formData();
 
 		// สร้าง FormData ใหม่ (สำคัญมาก)
@@ -17,6 +23,7 @@ export const actions: Actions = {
 			const response = await apiClient.post(
 				'/artists',
 				newFormData,
+				withAuth(token),
 				{
 					headers: {
 						'Content-Type': 'multipart/form-data'

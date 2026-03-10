@@ -8,6 +8,7 @@ use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Cache;
 
 class ArtistController extends Controller
 {
@@ -20,6 +21,20 @@ class ArtistController extends Controller
         return ArtistResource::collection($artists);
     }
 
+    public function recommended() {
+        $artists = Cache::remember('recommended_artists', 60 * 60 * 24, function() {
+            return Artist::query()->inRandomOrder()->limit(5)->get();
+        });
+        return ArtistResource::collection($artists);
+    }
+
+    public function updateRecommended() {
+        Gate::authorize('create', Artist::class);
+        Cache::forget('recommended_artists');
+        return response()->json([
+            "success" => true,
+        ]);
+}
     /**
      * Store a newly created resource in storage.
      */

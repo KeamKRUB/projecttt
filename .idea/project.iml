@@ -124,6 +124,20 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/voku/portable-ascii" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/clue/redis-protocol" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/clue/redis-react" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/evenement/evenement" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/laravel/reverb" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/paragonie/sodium_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/pusher/pusher-php-server" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/ratchet/rfc6455" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/react/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/react/dns" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/react/event-loop" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/react/promise" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/react/promise-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/react/socket" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel-api/vendor/react/stream" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -21,7 +21,7 @@ class ArtistPolicy
      */
     public function view(User $user, Artist $artist): bool
     {
-        return $user->isAdmin() || $artist->user_id === $user->id;
+        return true;
     }
 
     /**

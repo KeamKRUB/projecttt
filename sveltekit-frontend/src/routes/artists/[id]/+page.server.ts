@@ -1,11 +1,15 @@
 import { error, redirect, fail } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
-import apiClient from '$lib/server/api-client';
-export const load: PageServerLoad = async ({ params }) => {
+import apiClient, { withAuth } from '$lib/server/api-client.server';
+export const load: PageServerLoad = async ({ params, cookies }) => {
 	const id = params.id;
+	const token = cookies.get('token');
 
+	if (!token) {
+		throw redirect(303, '/login');
+	}
 	try {
-		const response = await apiClient.get(`/artists/${id}`);
+		const response = await apiClient.get(`/artists/${id}`, withAuth(token));
 		if (response.status === 200) {
 			return {
 				artist: response.data.data
@@ -24,9 +28,15 @@ export const load: PageServerLoad = async ({ params }) => {
 };
 
 export const actions: Actions = {
-	delete: async ({ params }) => {
+	delete: async ({ params, cookies }) => {
+		const token = cookies.get('token'); // ดึงค่า token จาก cookies
+
+		if (!token) {
+			throw redirect(303, '/login');
+		}
+
 		try {
-			await apiClient.delete(`/artists/${params.id}`);
+			await apiClient.delete(`/artists/${params.id}`, withAuth(token));
 
 		} catch (err: any) {
 			return fail(500, {
